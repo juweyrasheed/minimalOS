@@ -71,7 +71,7 @@ void terminal_scroll() {
          }
   }
 }
- l
+ 
 void terminal_initialize() {
   terminal_row = 0;
   terminal_column = 0;
@@ -98,7 +98,7 @@ void terminal_putchar(char c) {
 //Scrolling to a new line by checking if there is a character in a new line
   if (c=='\n') {
 	++terminal_row;
-	terminal_colmn = 0;
+	terminal_column = 0;
   if (terminal_row ==VGA_HEIGHT) {
 	terminal_scroll();
 	terminal_row--;
@@ -110,7 +110,7 @@ else {
 terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 	if (++terminal_column ==VGA_WIDTH){
 	 terminal_column = 0;
-	 if (++terminal_row == VGA_HEGHT) {
+	 if (++terminal_row == VGA_HEIGHT) {
 	 terminal_scroll();
 	 terminal_row--;
 	 }
@@ -143,7 +143,7 @@ void kernel_main() {
   terminal_setcolor(COLOR_WHITE);
   for (int i=0; i<6; i++) terminal_writestring("Hello, kernel World!\n");
 
-  terminal_setcolor(COLORBLUE);
+  terminal_setcolor(COLOR_BLUE);
   for (int i=0; i<18; i++) terminal_writestring("Hello, kernel World!\n");
   
   terminal_setcolor(COLOR_GREEN);
